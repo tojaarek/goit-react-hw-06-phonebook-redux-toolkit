@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/actions';
 import form from './AddContactForm.module.css';
 
 const AddContactForm = () => {
-  useEffect(() => {
-    const initialContacts = [];
-    localStorage.setItem('contacts', JSON.stringify(initialContacts));
-  }, []);
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
   const [contact, setContacts] = useState([]);
