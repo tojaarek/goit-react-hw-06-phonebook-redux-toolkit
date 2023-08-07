@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 export const App = () => {
   const [filter, setFilter] = useState('');
+
   return (
     <div className={app.position}>
       <div className={app.app}>

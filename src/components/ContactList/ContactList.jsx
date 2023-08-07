@@ -16,11 +16,9 @@ const ContactList = ({ filter }) => {
   const contacts = useSelector(state => state.contacts);
   const statusFilter = useSelector(state => state.filter.status);
   const filterContacts = getFiltersContacts(contacts, statusFilter);
-  ///const filteredContacts = filterContacts.filter(contact =>
-  ///  contact.name.toLowerCase().includes(filter.toLowerCase())
-  /// );
-  const initialContacts = [];
-  localStorage.setItem('contacts', JSON.stringify(initialContacts));
+  const filteredContacts = filterContacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
   if (!contacts || contacts.length === 0) {
     return (
       <ul className={results.list}>
@@ -31,7 +29,7 @@ const ContactList = ({ filter }) => {
   localStorage.setItem('contacts', JSON.stringify(contacts));
   return (
     <ul className={results.list}>
-      {filterContacts.map(contact => (
+      {filteredContacts.map(contact => (
         <Contact key={contact.id} contact={contact} />
       ))}
     </ul>

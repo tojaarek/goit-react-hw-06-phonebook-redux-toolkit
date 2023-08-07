@@ -10,7 +10,11 @@ import { statusFilter } from './const';
 const contactsInStorage = localStorage.getItem('contacts');
 const parsedContactsInStorage = JSON.parse(contactsInStorage);
 
-const contactsInitial = parsedContactsInStorage;
+if (!parsedContactsInStorage) {
+  localStorage.setItem('contacts', JSON.stringify([]));
+}
+
+const contactsInitial = parsedContactsInStorage || [];
 
 export const contactsReducer = createReducer(contactsInitial, {
   [addContact]: (state, action) => {
