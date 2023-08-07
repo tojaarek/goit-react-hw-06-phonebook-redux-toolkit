@@ -1,6 +1,7 @@
-import { Contact } from 'components/Contact/Contact';
+import Contact from 'components/Contact/Contact';
 import { useSelector } from 'react-redux';
 import results from './ContactList.module.css';
+import PropTypes from 'prop-types';
 
 const getFiltersContacts = (contacts, statusFilter) => {
   switch (statusFilter) {
@@ -35,6 +36,10 @@ const ContactList = ({ filter }) => {
       ))}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
 };
 
 export default ContactList;
