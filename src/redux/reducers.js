@@ -1,11 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  addContact,
-  deleteContact,
-  setStatusFilter,
-  toggleFavorite,
-} from './actions';
+import { addContact, deleteContact, toggleFavorite } from './actions';
 import { statusFilter } from './const';
+import { setStatusFilter } from './filterSlice';
 
 const contactsInStorage = localStorage.getItem('contacts');
 const parsedContactsInStorage = JSON.parse(contactsInStorage);

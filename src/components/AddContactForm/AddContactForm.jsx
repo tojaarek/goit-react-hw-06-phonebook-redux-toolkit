@@ -6,12 +6,9 @@ import form from './AddContactForm.module.css';
 const AddContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
-  const [contact, setContacts] = useState([]);
+  const [contact, setContacts] = useState({ name: '', number: '' });
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.target;
-
+  const checkContacts = name => {
     const duplicateContact = contacts.find(
       existingContact => existingContact.name === contact.name
     );
@@ -19,8 +16,18 @@ const AddContactForm = () => {
       alert(`${contact.name} is already in contacts`);
       return;
     }
-
     dispatch(addContact(contact.name, contact.number));
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+
+    if (!contacts || contacts.length === 0) {
+      dispatch(addContact(contact.name, contact.number));
+    } else {
+      checkContacts(contact.name);
+    }
 
     form.reset();
   };

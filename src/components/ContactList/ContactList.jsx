@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import results from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
-const getFiltersContacts = (contacts, statusFilter) => {
+export const getFiltersContacts = (contacts, statusFilter) => {
   switch (statusFilter) {
     case 'favorite':
       return contacts.filter(contact => contact.favorite);
@@ -16,9 +16,7 @@ const ContactList = ({ filter }) => {
   const contacts = useSelector(state => state.contacts);
   const statusFilter = useSelector(state => state.filter.status);
   const filterContacts = getFiltersContacts(contacts, statusFilter);
-  const filteredContacts = filterContacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+
   if (!contacts || contacts.length === 0) {
     return (
       <ul className={results.list}>
@@ -26,7 +24,13 @@ const ContactList = ({ filter }) => {
       </ul>
     );
   }
+
+  const filteredContacts = filterContacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   localStorage.setItem('contacts', JSON.stringify(contacts));
+
   return (
     <ul className={results.list}>
       {filteredContacts.map(contact => (
