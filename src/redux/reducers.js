@@ -1,7 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { addContact, deleteContact, toggleFavorite } from './actions';
-import { statusFilter } from './const';
-import { setStatusFilter } from './filterSlice';
 
 const contactsInStorage = localStorage.getItem('contacts');
 const parsedContactsInStorage = JSON.parse(contactsInStorage);
@@ -27,15 +25,5 @@ export const contactsReducer = createReducer(contactsInitial, {
       }
       return { ...contact, favorite: !contact.favorite };
     });
-  },
-});
-
-const filtersInitial = {
-  status: statusFilter,
-};
-
-export const filtersReducer = createReducer(filtersInitial, {
-  [setStatusFilter]: (state, action) => {
-    state.status = action.payload;
   },
 });
