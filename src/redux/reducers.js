@@ -1,14 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { addContact, deleteContact, toggleFavorite } from './actions';
 
-const contactsInStorage = localStorage.getItem('contacts');
-const parsedContactsInStorage = JSON.parse(contactsInStorage);
-console.log(contactsInStorage, 'parsed');
-
-if (!parsedContactsInStorage) {
+if (!localStorage.getItem('contacts')) {
   localStorage.setItem('contacts', JSON.stringify([]));
 }
-
+const contactsInStorage = localStorage.getItem('contacts');
+console.log(contactsInStorage, 'parsed');
+const parsedContactsInStorage = JSON.parse(contactsInStorage);
 const contactsInitial = parsedContactsInStorage;
 
 export const contactsReducer = createReducer(contactsInitial, {
