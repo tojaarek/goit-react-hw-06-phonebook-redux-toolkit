@@ -11,7 +11,6 @@ const AddContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    console.log(contacts, 'contacts');
     const duplicateContact = contacts.find(
       existingContact => existingContact.name === contact.name
     );
